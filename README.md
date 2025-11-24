@@ -428,7 +428,8 @@ Add this configuration:
 server {
     listen 80;
     server_name ip-health.yonasdejene.tech;
-
+  # adding header
+        add_header X-Served-By "6937-web-01";
     # Frontend
     location / {
         root /var/www/playing_around_with_APIs/frontEnd;
@@ -446,6 +447,7 @@ server {
         proxy_cache_bypass $http_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
     }
 }
 ```
