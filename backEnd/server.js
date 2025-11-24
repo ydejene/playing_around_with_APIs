@@ -147,12 +147,10 @@ function lookupIP(ipAddress) {
   });
 }
 
+
 server.listen(CONFIG.PORT, () => {
   console.log("═══════════════════════════════════════════════════════");
   console.log("IP Health Checker DETECTION TOOL - SERVER STARTED");
   console.log("═══════════════════════════════════════════════════════");
   console.log(`Server running at http://localhost:${CONFIG.PORT}`);
-  console.log(
-    `API endpoint: http://localhost:${CONFIG.PORT}/api/lookup?ip=8.8.8.8`
-  );
 });
