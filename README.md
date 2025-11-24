@@ -333,7 +333,7 @@ npm --version
 
 ```bash
 sudo apt update
-sudo apt install git
+sudo apt install git -y
 cd /var/www/
 sudo git clone https://github.com/ydejene/playing_around_with_APIs.git
 cd playing_around_with_APIs
@@ -385,7 +385,7 @@ After=network.target
 [Service]
 Type=simple
 User=www-data
-WorkingDirectory=/var/www/playing_around_with_APIs
+WorkingDirectory=/var/www/playing_around_with_APIs/backEnd
 ExecStart=/usr/bin/node server.js
 Restart=on-failure
 Environment=NODE_ENV=production
@@ -407,10 +407,10 @@ sudo systemctl enable playing_around_with_APIs
 sudo systemctl start playing_around_with_APIs
 
 # Check status
-sudo systemctl status ip-fraud-detection
+sudo systemctl status playing_around_with_APIs
 ```
 
-#### Step 7: Configure NGINX
+#### Step 7: Configure NGINX (I already did some of the setup in previous projects)
 
 Install and configure NGINX:
 
@@ -419,7 +419,7 @@ Install and configure NGINX:
 sudo apt install -y nginx
 
 # Create NGINX configuration
-sudo nano /etc/nginx/sites-available/ip-fraud-detection
+sudo nano /etc/nginx/sites-available/playing_around_with_APIs
 ```
 
 Add this configuration:
@@ -427,11 +427,11 @@ Add this configuration:
 ```nginx
 server {
     listen 80;
-    server_name your_domain_or_ip;
+    server_name ip-health.yonasdejene.tech;
 
     # Frontend
     location / {
-        root /var/www/ip-fraud-detection;
+        root /var/www/playing_around_with_APIs/frontEnd;
         index index.html;
         try_files $uri $uri/ =404;
     }
@@ -463,16 +463,9 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-#### Step 8: Configure Firewall
+#### Step 8: Configure dotTech domain
 
-```bash
-# Allow HTTP traffic
-sudo ufw allow 80/tcp
-sudo ufw allow 3000/tcp
-
-# Reload firewall
-sudo ufw reload
-```
+add A rcord mapping the loadbalancer ip 3.84.45.232 to ip-health.yonasdejene.tech
 
 #### Step 9: Repeat for Web02
 
