@@ -2,6 +2,7 @@
 
 A comprehensive web application for analyzing IP addresses to detect fraud, proxies, VPNs, and malicious activity. Built with vanilla HTML, CSS, and JavaScript with a minimal Node.js backend for secure API key management.
 
+## VIDEO DEMO: https://youtu.be/Fc3DsASaaTc
 ## Table of Contents
 
 - [Project Description](#project-description)
