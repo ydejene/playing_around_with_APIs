@@ -15,6 +15,7 @@ header {
   text-align: center;
   margin: 50px 30px;
   color: #e3f9ff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
