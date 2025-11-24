@@ -349,7 +349,7 @@ scp -r playing_around_with_APIs/ ubuntu@98.93.235.93:/var/www/
 #### Step 4: Install Dependencies
 
 ```bash
-cd /var/www/playing_around_with_APIs
+cd /var/www/playing_around_with_APIs/backend
 sudo npm install
 ```
 
