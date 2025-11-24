@@ -41,6 +41,14 @@ async function checkIP() {
   // remove extra white space with trim
   const ip = ipInput.value.trim();
 
+  // Validate IP format
+  const ipv4Pattern =
+    /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
+
+  if (!ipv4Pattern.test(ip)) {
+    showError("Invalid IP address format.");
+    return;
+  }
   // loading spinner
   loading.style.display = "block";
   resultCard.style.display = "none";
@@ -48,8 +56,12 @@ async function checkIP() {
   checkBtn.disabled = true;
 
   try {
+    if (!ip) {
+      showError("Please input Ip address!");
+      return;
+    }
     //  using ternary operator check if ip exists
-    const endpoint = ip ? `/lookup?ip=${encodeURIComponent(ip)}` : "/lookup";
+    const endpoint = `/lookup?ip=${encodeURIComponent(ip)}`;
     const response = await fetch(`${API_BASE_URL}${endpoint}`);
 
     if (!response.ok) {
@@ -189,7 +201,7 @@ function saveToHistory(data) {
 
   // since the data is stored as key value pair in the local storage, we have created a custom key above
   let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  // an array method to add new element at index 0 here in our cases makes them recent data in our history record 
+  // an array method to add new element at index 0 here in our cases makes them recent data in our history record
   history.unshift(historyItem);
 
   // Keep only last 100 entries
@@ -339,7 +351,7 @@ function displayHistory(history) {
 function toggleDetails(id) {
   const detailsRow = document.getElementById(`details-${id}`);
   const mainRow = document.getElementById(`row-${id}`);
-// exanding row let's one see the details of the previous ip lookups results 
+  // exanding row let's one see the details of the previous ip lookups results
   if (expandedRow && expandedRow !== id) {
     document.getElementById(`details-${expandedRow}`).style.display = "none";
     document
